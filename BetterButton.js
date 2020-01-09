@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 export default class BetterButton extends React.Component {
+
     buttonTextStyle = () => {
 
         if (this.props.title == "U") {
@@ -17,14 +18,14 @@ export default class BetterButton extends React.Component {
             return [styles.title, styles.italictext]
         }
 
-        return styles.title;
+        return [styles.title];
     };
 
     render() {
         const { title, onPress } = this.props;
 
         return (
-            <TouchableOpacity style={styles.button} onPress={() => onPress()}>
+            <TouchableOpacity style={[styles.button, {...this.props.style}]} onPress={() => onPress()}>
                 <Text style={this.buttonTextStyle()}>{title}</Text>
             </TouchableOpacity>
         )
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
         paddingVertical:5,
         borderRadius:3,
-        width: 50,
+        minWidth: 50,
         backgroundColor: '#ADD8E6',
     },
 
